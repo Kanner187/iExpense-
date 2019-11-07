@@ -27,6 +27,7 @@ struct ContentView: View {
                         }
                         Spacer()
                         Text("$\(item.amount , specifier: "%.2f")")
+                            .foregroundColor(item.amount >= 100 ? Color.red : Color.blue)
                     }
                 }
                 .onDelete { (IndexSet) in
