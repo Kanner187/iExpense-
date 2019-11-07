@@ -297,6 +297,7 @@
 				DEVELOPMENT_TEAM = R466KD5U6U;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iExpense/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,6 +318,7 @@
 				DEVELOPMENT_TEAM = R466KD5U6U;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iExpense/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

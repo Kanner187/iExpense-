@@ -19,11 +19,14 @@ struct ContentView: View {
             List{
                 ForEach(expense.items){ item in
                     HStack{
-                        VStack{
+                        VStack(alignment: .leading){
                             Text("\(item.name)")
+                                .fontWeight(.bold)
                             Text("\(item.type)")
+                                .font(.system(size: 10))
                         }
-                        Text("\(item.amount)")
+                        Spacer()
+                        Text("$\(item.amount , specifier: "%.2f")")
                     }
                 }
                 .onDelete { (IndexSet) in
