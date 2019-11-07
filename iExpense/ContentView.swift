@@ -18,7 +18,13 @@ struct ContentView: View {
         VStack{
             List{
                 ForEach(expense.items){ item in
-                    Text("\(item.name)")
+                    HStack{
+                        VStack{
+                            Text("\(item.name)")
+                            Text("\(item.type)")
+                        }
+                        Text("\(item.amount)")
+                    }
                 }
                 .onDelete { (IndexSet) in
                     self.deleteRows(offsets: IndexSet)
@@ -45,14 +51,6 @@ struct ContentView: View {
         self.expense.items.remove(atOffsets: offsets)
     }
 }
-
-
-
-
-
-
-
-
 
 
 struct ContentView_Previews: PreviewProvider {

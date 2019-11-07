@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct AddExpense: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var itemName = ""
     @State private var itemAmount = ""
     @State private var itemType = "business"
@@ -44,7 +45,7 @@ struct AddExpense: View {
             }
         .navigationBarTitle("Add New Expense")
             .navigationBarItems(trailing: Button(action: {
-                //Perform button action
+                self.presentationMode.wrappedValue.dismiss()
             }){
                 Text("Cancel")
             })
@@ -57,6 +58,7 @@ struct AddExpense: View {
         guard let amount = Double(itemAmount) else { return }
         let item = ExpenseItem(name: self.itemName , type: self.itemType , amount: amount)
         self.expenses.items.append(item)
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
