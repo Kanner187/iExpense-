@@ -8,48 +8,11 @@
 
 import SwiftUI
 
-enum Type {
-    case business
-    case domestic
-}
-
-struct ExpenseItem: Identifiable{
-    let id = UUID()
-    var name: String
-    var type: Type
-    var amount: Double
-}
-
-class Expense: ObservableObject{
-   @Published var items = [ExpenseItem]()
-}
-
-
-
-struct FormView: View {
-    @State var itemName = ""
-    @State var itemType: Type = .business
-    
-    var body: some View {
-        Form{
-            Section(header: Text("Item")) {
-                TextField("item name", text: $itemName)
-            }
-        }
-    }
-}
-
-
-
-
-
-
 struct ContentView: View {
     @ObservedObject var expense = Expense()
     @State private var showingForm = false
     
-    
-    
+
   var body: some View {
     NavigationView{
         VStack{
@@ -64,16 +27,13 @@ struct ContentView: View {
         }
     .navigationBarTitle("iExpense")
         .navigationBarItems(trailing: Button(action: {
-            //Perform button action
-            let expen = ExpenseItem(name: "Rice", type: .business, amount: 12)
-            self.expense.items.append(expen)
-            
-            self.showingForm.toggle()
+            self.showingForm = true 
         }){
             Image(systemName: "plus")
         })
             .sheet(isPresented: $showingForm) {
-                FormView()
+                //Add view
+                AddExpense(expenses: self.expense)
         }
     }
     }
