@@ -15,6 +15,8 @@ struct AddExpense: View {
     @State private var itemType = "business"
     @ObservedObject var expenses: Expense
     @State private var alertShowing = false
+    @State private var message = ""
+    @State private var title = ""
     
    static let types = ["business" , "domestic"]
     
@@ -51,14 +53,30 @@ struct AddExpense: View {
             })
             
         }
+        .alert(isPresented: $alertShowing) { () -> Alert in
+            Alert(title: Text(self.title), message: Text(self.message), dismissButton: .default(Text("Okay")))
+        }
     }
     
     //Methods
     func saveItem() {
-        guard let amount = Double(itemAmount) else { return }
+        guard let amount = Double(itemAmount) else {
+            configureAlert(title: "Invalid amount", message: "Enter item's amount")
+            return
+        }
+        guard itemName != "" else {
+            configureAlert(title: "Name can not be empty", message: "Enter item name")
+            return
+        }
         let item = ExpenseItem(name: self.itemName , type: self.itemType , amount: amount)
         self.expenses.items.append(item)
         presentationMode.wrappedValue.dismiss()
+    }
+    
+    func configureAlert(title: String , message: String){
+        alertShowing = true
+        self.title = title
+        self.message = message
     }
 }
 
