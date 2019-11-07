@@ -35,17 +35,16 @@ struct ContentView: View {
             }
         }
     .navigationBarTitle("iExpense")
-        .navigationBarItems(trailing: Button(action: {
-            self.showingForm = true 
-        }){
-            Image(systemName: "plus")
-        })
-            .sheet(isPresented: $showingForm) {
-                //Add view
-                AddExpense(expenses: self.expense)
-        }
+    .navigationBarItems(leading: EditButton(), trailing: Button(action: {
+        self.showingForm = true
+    }){
+        Image(systemName: "plus")
+    })
+    .sheet(isPresented: $showingForm) {
+        AddExpense(expenses: self.expense)
     }
-    }
+}
+}
     
     
     
